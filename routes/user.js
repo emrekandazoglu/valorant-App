@@ -6,10 +6,10 @@ const db = require('../data/db');
 router.use("/karakter/:id", async (req, res) => {
     const id = req.params.id;
     try {
-        const karakter = await db.execute("SELECT * FROM karakter where karakterID=?", [id]);
-        const kategori = await db.execute("Select * from kategori");
+        const [karakter] = await db.execute("SELECT * FROM karakter k join kategori ka on k.kategoriID=ka.kategoriID where karakterID=?", [id]);
 
-        res.render("mainPage", { karakter: karakter[0] });
+
+        res.render("detailsPage", { karakter: karakter[0] });
 
     } catch (error) {
         console.log(error);

@@ -1,0 +1,12 @@
+<ul class="list-group">
+    <li class="list-group-item active" aria-current="true">KATEGORİLER</li>
+    <% kategori.forEach(data=> { %>
+        <li class="list-group-item">
+            <a href="/<%= data.kategoriID %>" class="text-decoration-none text-dark">
+                <%= data.Tipi %>
+            </a>
+        </li>
+
+        <% }) %>
+
+</ul>

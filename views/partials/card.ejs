@@ -1,0 +1,22 @@
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    <% karakter.forEach(data=> { %>
+        <% if (data.onay==1) { %>
+
+
+            <div class="col">
+                <div class="card">
+                    <img src="/img/<%= data.image %>.webp" class="card-img-top" alt="<%= data.karakterAdı %>">
+
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%=data.karakterAdı %>
+                        </h5>
+                        <p class="card-text">
+                            <%= data.açıklama %>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+                <% }) %>
+</div>

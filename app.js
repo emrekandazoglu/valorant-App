@@ -1,15 +1,26 @@
-const express = require('express');
+const express = require("express");
+const path = require("path");
+
 const userRoutes = require("./routes/user");
+const adminRouter = require("./routes/admin");
+
 const app = express();
 
+// EJS Template Engine Ayarı
 app.set("view engine", "ejs");
-const path = require('path');
+app.set("views", path.join(__dirname, "views")); // views klasörünü belirt
 
-app.use(express.static('public')); // Public klasörünü statik hale getir
+// Middleware'ler
+app.use(express.static(path.join(__dirname, "public"))); // Public klasörünü statik hale getir
+app.use(express.urlencoded({ extended: true })); // Form verilerini alabilmek için
+app.use(express.json()); // JSON verileri alabilmek için
 
-app.use(userRoutes);
+// Rotalar
+app.use("/admin", adminRouter);
+app.use("/", userRoutes); // Varsayılan olarak user rotalarını bağla
 
-app.listen(4000, () => {
-    console.log("4000 portunda çalışıyor");
-    console.log("4000 portunda");
+// Sunucuyu başlat
+const PORT = 4000;
+app.listen(PORT, () => {
+    console.log(`Sunucu ${PORT} portunda çalışıyor...`);
 });

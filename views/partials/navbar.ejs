@@ -1,8 +1,20 @@
-<nav class="navbar navbar-light bg-light">
-    <div class="container-fluid ">
-        <a class="navbar-brand" href="/">
-
-            <h1>VALORANT</h1>
-        </a>
+<nav class="navbar navbar-dark bg-dark shadow-sm mb-3">
+    <div class="container py-2">
+        <div class="d-flex align-items-center gap-4">
+            <a class="navbar-brand fw-bold text-uppercase text-white fs-3 m-0" href="/">VALORANT</a>
+            <a class="nav-link text-white hover-effect" href="/admin/create">Add Character</a>
+            <a class="nav-link text-white hover-effect" href="/admin/listkarakter">List Character</a>
+        </div>
     </div>
 </nav>
+
+<style>
+    .hover-effect {
+        transition: color 0.3s ease-in-out;
+    }
+
+    .hover-effect:hover {
+        color: #ff4655 !important;
+        /* Valorant kırmızısı */
+    }
+</style>

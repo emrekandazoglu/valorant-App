@@ -3,6 +3,19 @@ const router = express.Router();
 
 const db = require('../data/db');
 
+
+router.get("/listkarakter", async (req, res) => {
+    try {
+        const [rows] = await db.execute("SELECT * FROM karakter");
+
+        res.render("tablePage", { karakterler: rows });
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("Bir hata oluştu.");
+    }
+});
+
+
 router.post("/update/:karakterID", async (req, res) => {
     const karakterID = req.params.karakterID;
     const { karakterAdı, açıklama, kategori, onay, image } = req.body;

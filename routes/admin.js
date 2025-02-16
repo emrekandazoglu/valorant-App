@@ -7,8 +7,8 @@ const db = require('../data/db');
 router.get("/listkarakter", async (req, res) => {
     try {
         const [rows] = await db.execute("SELECT * FROM karakter");
-
-        res.render("tablePage", { karakterler: rows });
+        const action = req.query.action;
+        res.render("tablePage", { karakterler: rows, action: action });
     } catch (error) {
         console.log(error);
         res.status(500).send("Bir hata oluştu.");
@@ -33,7 +33,7 @@ router.post("/update/:karakterID", async (req, res) => {
             [karakterAdı, açıklama, kategori, onay ? 1 : 0, image, karakterID]
         );
 
-        res.redirect("/"); // Güncelleme sonrası ana sayfaya yönlendirme
+        res.redirect("/admin/listkarakter?action=update"); // Güncelleme sonrası ana sayfaya yönlendirme
     } catch (error) {
         console.log(error);
         res.status(500).send("Bir hata oluştu.");
@@ -53,23 +53,6 @@ router.get("/update/:karakterID", async (req, res) => {
         console.log(error);
         res.status(500).send("Bir hata oluştu.");
     }
-});
-
-
-router.get("/show", async (req, res) => {
-
-    try {
-
-
-        const kategori = await db.execute("Select * from kategori");
-        const karakter = await db.execute("SELECT * FROM karakter");
-
-        res.render("tablePage", { karakter: karakter[0], kategori: kategori[0] });
-
-    } catch (error) {
-        console.log(error);
-    }
-
 });
 
 
